@@ -1,55 +1,117 @@
 @import "tailwindcss";
 
 @theme {
-  --color-slate-950: #020617;
-  --color-slate-900: #0f172a;
-  --color-slate-800: #1e293b;
+  /* Case Files palette */
+  --color-paper: #ede4d3;
+  --color-surface: #f7f2e7;
+  --color-ink: #2b3a44;
+  --color-rust: #b0503a;
+  --color-moss: #5c6b4f;
+  --color-line: #c9bca0;
+
+  /* Typography */
+  --font-sans: var(--font-work-sans), ui-sans-serif, system-ui, -apple-system,
+    sans-serif;
+  --font-serif: var(--font-bitter), ui-serif, Georgia, "Times New Roman", serif;
+  --font-hand: var(--font-caveat), "Bradley Hand", "Segoe Print", cursive;
+}
+
+html {
+  background-color: var(--color-paper);
 }
 
 body {
-  background: linear-gradient(135deg, var(--color-slate-900) 0%, var(--color-slate-800) 50%, var(--color-slate-900) 100%);
-  color: white;
+  background-color: var(--color-paper);
+  color: var(--color-ink);
   min-height: 100vh;
+  font-family: var(--font-sans);
 }
 
-/* Custom animations */
-@keyframes fade-in {
-  from {
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-serif);
+}
+
+/* --- Motion -------------------------------------------------------------- */
+
+/* Hero stamp settling into place — the one entrance animation. */
+@keyframes stamp-settle {
+  0% {
     opacity: 0;
-    transform: translateY(20px);
+    transform: rotate(-9deg) scale(2.3);
   }
-  to {
+  55% {
     opacity: 1;
-    transform: translateY(0);
+    transform: rotate(-4.5deg) scale(0.9);
+  }
+  78% {
+    transform: rotate(-2deg) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(-3deg) scale(1);
   }
 }
 
-.animate-fade-in {
-  animation: fade-in 0.8s ease-out forwards;
-  opacity: 0;
+.animate-stamp {
+  animation: stamp-settle 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) 0.15s both;
 }
 
-/* Markdown content styles */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-stamp {
+    animation: none;
+    opacity: 1;
+    transform: rotate(-3deg);
+  }
+}
+
+/* --- Focus ------------------------------------------------------------- */
+
+:focus-visible {
+  outline: 2px solid var(--color-rust);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* --- Markdown content (case-file page) ------------------------------------ */
+
+.prose {
+  color: var(--color-ink);
+}
+
 .prose h2 {
-  font-size: 2rem;
+  font-size: 1.9rem;
   font-weight: 700;
   margin-top: 2rem;
   margin-bottom: 1rem;
-  color: #60a5fa;
+  color: var(--color-ink);
+  border-bottom: 1px solid var(--color-line);
+  padding-bottom: 0.35rem;
 }
 
 .prose h3 {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 600;
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
-  color: #93c5fd;
+  color: var(--color-rust);
 }
 
 .prose p {
   margin-bottom: 1.25rem;
   line-height: 1.75;
-  color: #cbd5e1;
+  color: var(--color-ink);
 }
 
 .prose ul {
@@ -68,28 +130,30 @@ body {
 
 .prose li {
   margin-bottom: 0.5rem;
-  color: #cbd5e1;
+  color: var(--color-ink);
   line-height: 1.75;
 }
 
 .prose strong {
-  color: #f1f5f9;
+  color: var(--color-ink);
   font-weight: 600;
 }
 
 .prose code {
-  background-color: rgba(51, 65, 85, 0.5);
-  padding: 0.2rem 0.4rem;
+  background-color: rgba(176, 80, 58, 0.1);
+  border: 1px solid var(--color-line);
+  padding: 0.15rem 0.4rem;
   border-radius: 0.25rem;
   font-size: 0.875rem;
-  color: #60a5fa;
+  color: var(--color-rust);
 }
 
 .prose a {
-  color: #60a5fa;
+  color: var(--color-rust);
   text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .prose a:hover {
-  color: #93c5fd;
+  color: var(--color-ink);
 }

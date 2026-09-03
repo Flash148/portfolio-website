@@ -1,66 +1,101 @@
 import Link from 'next/link';
-import { Github, ExternalLink } from 'lucide-react';
+import { Github, ArrowUpRight } from 'lucide-react';
 import { getAllProjects } from '@/lib/markdown';
-import { title } from 'process';
+
+// Short handwritten notes for standout entries, keyed by slug.
+const MARGIN_NOTES: Record<string, string> = {
+  'morse-code-translator': 'first one I shipped end to end',
+  'image-color-palette-generator': 'the color math finally clicked here',
+};
 
 export default async function Projects() {
   const projects = await getAllProjects();
 
-  console.log('Projects:', projects.map(p => ({ slug: p.slug, title: p.title })));
-
   return (
-    <section id="projects" className="min-h-screen py-20 px-6">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-5xl font-bold mb-4 text-center">Projects</h2>
-        <p className="text-slate-400 text-center mb-16">Things I've built</p>
-        
-        <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
-            <div
-              key={project.slug}
-              className="group bg-slate-800/50 backdrop-blur-sm rounded-xl p-8 border border-slate-700 hover:border-blue-500 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20"
-              style={{ 
-                animation: `fade-in 0.8s ease-out forwards`,
-                animationDelay: `${index * 0.1}s`,
-                opacity: 0
-              }}
-            >
-              <h3 className="text-2xl font-bold mb-3 group-hover:text-blue-400 transition-colors">
-                {project.title}
-              </h3>
-              <p className="text-slate-300 mb-4 leading-relaxed">
-                {project.description}
-              </p>
-              <div className="flex flex-wrap gap-2 mb-6">
-                {project.techStack.map((tech) => (
+    <section id="projects" className="px-6 py-24">
+      <div className="mx-auto max-w-5xl">
+        <p className="mb-2 text-xs font-semibold uppercase tracking-[0.28em] text-moss">
+          Section 02
+        </p>
+        <h2 className="text-4xl font-bold text-ink sm:text-5xl">Projects</h2>
+        <p className="mt-3 max-w-xl text-ink/70">
+          Case files — small things I&apos;ve built, mostly to learn something
+          specific.
+        </p>
+
+        <div className="mt-14 grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-12">
+          {projects.map((project, index) => {
+            const isWide = index % 2 === 0;
+            const note = MARGIN_NOTES[project.slug];
+
+            return (
+              <article
+                key={project.slug}
+                className={`group relative ${
+                  isWide ? 'md:col-span-7' : 'md:col-span-5 md:mt-16'
+                }`}
+              >
+                {/* Folder tab */}
+                <span
+                  aria-hidden="true"
+                  className="absolute -top-3 left-6 h-3 w-24 rounded-t-md border border-b-0 border-line bg-surface"
+                />
+
+                <div className="relative border border-line bg-surface p-7 transition-all duration-200 group-hover:-translate-y-1.5 group-hover:[transform:rotate(0deg)] group-hover:shadow-[7px_9px_0_rgba(43,58,68,0.13)]">
+                  {/* Dog-ear / page-turn corner */}
                   <span
-                    key={tech}
-                    className="px-3 py-1 bg-slate-700/50 rounded-full text-sm text-blue-300"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-              <div className="flex gap-4">
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-slate-300 hover:text-blue-400 transition-colors"
-                >
-                  <Github size={20} />
-                  <span>Code</span>
-                </a>
-                <Link
-                  href={`/projects/${project.slug}`}
-                  className="flex items-center gap-2 text-slate-300 hover:text-blue-400 transition-colors"
-                >
-                  <ExternalLink size={20} />
-                  <span>Details</span>
-                </Link>
-              </div>
-            </div>
-          ))}
+                    aria-hidden="true"
+                    className="absolute right-0 top-0 h-0 w-0 border-l-[26px] border-t-[26px] border-l-transparent border-t-paper transition-all duration-200 group-hover:border-l-[34px] group-hover:border-t-[34px]"
+                  />
+
+                  <h3 className="pr-6 text-xl font-bold text-ink">
+                    {project.title}
+                  </h3>
+                  <p className="mt-3 leading-relaxed text-ink/75">
+                    {project.description}
+                  </p>
+
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {project.techStack.map((tech) => (
+                      <span
+                        key={tech}
+                        className="rounded-sm border border-moss px-2 py-0.5 text-xs font-medium uppercase tracking-wide text-moss"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="mt-6 flex flex-wrap gap-5 text-sm">
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-rust underline underline-offset-4 hover:text-ink"
+                      >
+                        <Github size={16} />
+                        Code
+                      </a>
+                    )}
+                    <Link
+                      href={`/projects/${project.slug}`}
+                      className="inline-flex items-center gap-1.5 text-rust underline underline-offset-4 hover:text-ink"
+                    >
+                      Case notes
+                      <ArrowUpRight size={16} />
+                    </Link>
+                  </div>
+                </div>
+
+                {note && (
+                  <p className="mt-3 font-hand text-lg leading-tight text-moss md:absolute md:-bottom-6 md:right-3 md:mt-0 md:w-52 md:text-right md:[transform:rotate(-4deg)]">
+                    {note}
+                  </p>
+                )}
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>

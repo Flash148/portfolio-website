@@ -25,39 +25,37 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   return (
-    <div className="min-h-screen py-20 px-6">
-      <div className="max-w-4xl mx-auto">
-        {/* Back to FlashBytes button */}
-        <Link 
+    <div className="min-h-screen px-6 py-24">
+      <div className="mx-auto max-w-3xl">
+        <Link
           href="/blog"
-          className="inline-flex items-center gap-2 text-slate-300 hover:text-blue-400 transition-colors mb-8"
+          className="mb-10 inline-flex items-center gap-2 text-sm text-rust underline underline-offset-4 hover:text-ink"
         >
-          <ArrowLeft size={20} />
+          <ArrowLeft size={18} />
           <span>Back to FlashBytes</span>
         </Link>
 
-        {/* Post header */}
         <article>
-          <h1 className="text-5xl font-bold mb-4">{post.title}</h1>
-          
-          {/* Meta info */}
-          <div className="flex items-center gap-6 text-slate-400 mb-8 pb-8 border-b border-slate-700">
-            <div className="flex items-center gap-2">
-              <Calendar size={18} />
-              <span>{new Date(post.date).toLocaleDateString('en-US', { 
-                month: 'long', 
-                day: 'numeric', 
-                year: 'numeric' 
-              })}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <User size={18} />
-              <span>{post.author}</span>
-            </div>
+          <h1 className="text-4xl font-bold leading-tight text-ink sm:text-5xl">
+            {post.title}
+          </h1>
+
+          <div className="mt-6 flex items-center gap-6 border-b border-line pb-8 text-sm text-ink/60">
+            <span className="flex items-center gap-2">
+              <Calendar size={16} />
+              {new Date(post.date).toLocaleDateString('en-US', {
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric',
+              })}
+            </span>
+            <span className="flex items-center gap-2">
+              <User size={16} />
+              {post.author}
+            </span>
           </div>
 
-          {/* Post content */}
-          <div className="prose">
+          <div className="prose mt-8 max-w-none">
             <div dangerouslySetInnerHTML={{ __html: post.content }} />
           </div>
         </article>
