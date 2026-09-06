@@ -10,8 +10,8 @@ export default function About() {
         <div className="mt-8 max-w-2xl space-y-6 text-base leading-relaxed text-ink/80">
           <p>
             Most of my experience is in community support. I&apos;ve spent years
-            as a Housing Case Manager and in frontline services &mdash; sitting
-            with people in hard situations, working out what&apos;s really going
+            in frontline services &mdash; sitting with people in hard situations, 
+            working out what&apos;s really going
             on, and helping them get to somewhere stable.
           </p>
           <p>
