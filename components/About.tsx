@@ -9,15 +9,22 @@ export default function About() {
 
         <div className="mt-8 max-w-2xl space-y-6 text-base leading-relaxed text-ink/80">
           <p>
-            I&apos;m a developer who came to code sideways. My day job is
-            Housing Case Manager: I sit with people in hard situations, sort out
-            what&apos;s actually going on, and help them get to somewhere stable.
+            Most of my experience is in community support. I&apos;ve spent years
+            as a Housing Case Manager and in frontline services &mdash; sitting
+            with people in hard situations, working out what&apos;s really going
+            on, and helping them get to somewhere stable.
           </p>
           <p>
-            Building software scratches the same itch. I like taking a vague,
-            tangled problem and turning it into something small, clear, and
-            genuinely useful. I care about clean structure, honest edge-case
-            handling, and code the next person can read.
+            That work runs on skills that carry directly into software: breaking
+            an ambiguous, high-stakes situation into clear next steps; hearing
+            the real problem behind the one first described; documenting
+            precisely; staying steady under pressure; and following through when
+            someone is counting on the result.
+          </p>
+          <p>
+            I bring those same instincts to development &mdash; clear structure,
+            honest edge-case handling, and code the next person can pick up and
+            read. The tools are newer than the habits.
           </p>
         </div>
 
