@@ -1,29 +1,53 @@
 export default function About() {
   return (
-    <section id="about" className="min-h-screen flex items-center justify-center py-20 px-6">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-5xl font-bold mb-8 text-center">About Me</h2>
-        <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-8 border border-slate-700">
-          <p className="text-lg text-slate-300 leading-relaxed mb-6">
-            I'm a developer passionate about creating clean, efficient, and user-friendly applications. 
-            I enjoy solving complex problems and continuously learning new technologies.
+    <section id="about" className="px-6 py-24">
+      <div className="mx-auto max-w-5xl">
+        <p className="mb-2 text-xs font-semibold uppercase tracking-[0.28em] text-moss">
+          Section 03
+        </p>
+        <h2 className="text-4xl font-bold text-ink sm:text-5xl">About Me</h2>
+
+        <div className="mt-8 max-w-2xl space-y-6 text-base leading-relaxed text-ink/80">
+          <p>
+            Most of my experience is in community support. I&apos;ve spent years
+            in frontline services &mdash; sitting with people in hard situations, 
+            working out what&apos;s really going
+            on, and helping them get to somewhere stable.
           </p>
-          <p className="text-lg text-slate-300 leading-relaxed mb-6">
-            My approach combines technical expertise with attention to detail, ensuring that every 
-            project I work on is both functional and maintainable.
+          <p>
+            That work runs on skills that carry directly into software: breaking
+            an ambiguous, high-stakes situation into clear next steps; hearing
+            the real problem behind the one first described; documenting
+            precisely; staying steady under pressure; and following through when
+            someone is counting on the result.
           </p>
-          <div className="mt-8">
-            <h3 className="text-2xl font-semibold mb-4 text-blue-400">Skills & Technologies</h3>
-            <div className="flex flex-wrap gap-3">
-              {['Python', 'TypeScript', 'React', 'Next.js', 'Node.js', 'Tailwind CSS', 'Git'].map((skill) => (
+          <p>
+            I bring those same instincts to development &mdash; clear structure,
+            honest edge-case handling, and code the next person can pick up and
+            read. The tools are newer than the habits.
+          </p>
+        </div>
+
+        <blockquote className="my-10 max-w-2xl border-l-2 border-rust pl-5 font-hand text-2xl leading-snug text-ink">
+          Whether it&apos;s a case file or a codebase, the work is the same: find
+          the person a stable place to stand, then build from there.
+        </blockquote>
+
+        <div className="mt-10">
+          <h3 className="text-xl font-semibold text-ink">
+            Skills &amp; Technologies
+          </h3>
+          <div className="mt-4 flex flex-wrap gap-2">
+            {['Python', 'TypeScript', 'React', 'Next.js', 'Node.js', 'Tailwind CSS', 'Git'].map(
+              (skill) => (
                 <span
                   key={skill}
-                  className="px-4 py-2 bg-slate-700/50 rounded-lg text-slate-200 hover:bg-slate-700 transition-colors cursor-default"
+                  className="rounded-sm border border-line bg-surface px-3 py-1.5 text-sm text-ink"
                 >
                   {skill}
                 </span>
-              ))}
-            </div>
+              )
+            )}
           </div>
         </div>
       </div>

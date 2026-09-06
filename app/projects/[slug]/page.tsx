@@ -28,50 +28,50 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   }
 
   return (
-    <div className="min-h-screen py-20 px-6">
-      <div className="max-w-4xl mx-auto">
-        {/* Back button */}
-        <Link 
+    <div className="min-h-screen px-6 py-24">
+      <div className="mx-auto max-w-3xl">
+        <Link
           href="/#projects"
-          className="inline-flex items-center gap-2 text-slate-300 hover:text-blue-400 transition-colors mb-8"
+          className="mb-10 inline-flex items-center gap-2 text-sm text-rust underline underline-offset-4 hover:text-ink"
         >
-          <ArrowLeft size={20} />
+          <ArrowLeft size={18} />
           <span>Back to Projects</span>
         </Link>
 
-        {/* Project header */}
-        <div className="mb-12">
-          <h1 className="text-5xl font-bold mb-4">{project.title}</h1>
-          <p className="text-xl text-slate-300 mb-6">{project.description}</p>
-          
-          {/* Tech stack */}
-          <div className="flex flex-wrap gap-2 mb-6">
+        <div className="border-b border-line pb-8">
+          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.28em] text-moss">
+            Case Notes
+          </p>
+          <h1 className="text-4xl font-bold leading-tight text-ink sm:text-5xl">
+            {project.title}
+          </h1>
+          <p className="mt-4 text-lg text-ink/80">{project.description}</p>
+
+          <div className="mt-6 flex flex-wrap gap-2">
             {project.techStack.map((tech) => (
               <span
                 key={tech}
-                className="px-3 py-1 bg-slate-700/50 rounded-full text-sm text-blue-300"
+                className="rounded-sm border border-moss px-2 py-0.5 text-xs font-medium uppercase tracking-wide text-moss"
               >
                 {tech}
               </span>
             ))}
           </div>
 
-          {/* GitHub link */}
           {project.github && (
             <a
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 rounded-lg transition-colors"
+              className="mt-6 inline-flex items-center gap-2 border border-ink px-4 py-2 text-sm font-semibold uppercase tracking-wide text-ink transition-colors hover:bg-ink hover:text-surface"
             >
-              <Github size={20} />
+              <Github size={18} />
               <span>View on GitHub</span>
             </a>
           )}
         </div>
 
-        {/* Project content from markdown */}
-        <article className="prose">
+        <article className="prose mt-8 max-w-none">
           <div dangerouslySetInnerHTML={{ __html: project.content }} />
         </article>
       </div>

@@ -1,46 +1,50 @@
-import { Mail, Github, Linkedin } from 'lucide-react';
-
 export default function Contact() {
   return (
-    <section id="contact" className="min-h-screen flex items-center justify-center py-20 px-6">
-      <div className="max-w-2xl mx-auto text-center">
-        <h2 className="text-5xl font-bold mb-8">Get in Touch</h2>
-        <p className="text-xl text-slate-300 mb-12">
-          I'm always open to discussing new projects, opportunities, or just chatting about tech!
+    <section id="contact" className="px-6 py-24">
+      <div className="mx-auto max-w-5xl">
+        <p className="mb-2 text-xs font-semibold uppercase tracking-[0.28em] text-moss">
+          Section 04
         </p>
-        
-        <div className="flex justify-center gap-6 mb-12 flex-wrap">
+        <h2 className="text-4xl font-bold text-ink sm:text-5xl">Get in Touch</h2>
+
+        <p className="mt-6 max-w-xl text-base leading-relaxed text-ink/80">
+          Open to new projects and opportunities, or just a conversation about
+          tech, housing work, or where the two meet. Email is best:
+        </p>
+
+        <p className="mt-6 text-lg">
           <a
             href="mailto:maragonrobbins@gmail.com"
-            className="flex items-center gap-3 px-6 py-3 bg-slate-800 hover:bg-slate-700 rounded-lg transition-all duration-200 hover:scale-105"
+            className="text-rust underline underline-offset-4 hover:text-ink"
           >
-            <Mail size={24} />
-            <span>Email</span>
+            maragonrobbins@gmail.com
           </a>
-          
+        </p>
+
+        <p className="mt-4 text-sm text-ink/70">
+          Also on{' '}
           <a
             href="https://github.com/Flash148"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 px-6 py-3 bg-slate-800 hover:bg-slate-700 rounded-lg transition-all duration-200 hover:scale-105"
+            className="text-rust underline underline-offset-4 hover:text-ink"
           >
-            <Github size={24} />
-            <span>GitHub</span>
-          </a>
-          
+            GitHub
+          </a>{' '}
+          and{' '}
           <a
             href="https://www.linkedin.com/in/michaelaragonrobbins/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 px-6 py-3 bg-slate-800 hover:bg-slate-700 rounded-lg transition-all duration-200 hover:scale-105"
+            className="text-rust underline underline-offset-4 hover:text-ink"
           >
-            <Linkedin size={24} />
-            <span>LinkedIn</span>
+            LinkedIn
           </a>
-        </div>
+          .
+        </p>
 
-        <div className="text-slate-500 text-sm">
-          © 2026 Mike Robbins. Built with Next.js & TypeScript
+        <div className="mt-16 border-t border-line pt-6 text-sm text-ink/60">
+          © 2026 Mike Robbins. Built with Next.js &amp; TypeScript.
         </div>
       </div>
     </section>

@@ -9,59 +9,64 @@ export default function Hero() {
   };
 
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center relative px-6">
-      {/* Animated background blobs */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute w-96 h-96 bg-blue-500/20 rounded-full blur-3xl top-20 left-20 animate-pulse"></div>
-        <div 
-          className="absolute w-96 h-96 bg-purple-500/20 rounded-full blur-3xl bottom-20 right-20 animate-pulse" 
-          style={{ animationDelay: '1s' }}
-        ></div>
-      </div>
-      
-      {/* Main content */}
-      <div className="relative z-10 text-center max-w-4xl">
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in">
-          Hi, I'm <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Mike Robbins</span>
-        </h1>
-        <p 
-          className="text-xl md:text-2xl text-slate-300 mb-8 animate-fade-in" 
-          style={{ animationDelay: '0.2s' }}
-        >
-          Developer • Problem Solver • Creator
-        </p>
-        <p 
-          className="text-lg text-slate-400 mb-12 max-w-2xl mx-auto animate-fade-in" 
-          style={{ animationDelay: '0.4s' }}
-        >
-          I build clean, efficient solutions and love turning ideas into reality through code.
-        </p>
-        <div 
-          className="flex gap-4 justify-center animate-fade-in flex-wrap" 
-          style={{ animationDelay: '0.6s' }}
-        >
-          <button 
-            onClick={() => scrollToSection('projects')}
-            className="px-8 py-3 bg-blue-500 hover:bg-blue-600 rounded-lg font-semibold transition-all duration-200 hover:scale-105"
+    <section
+      id="hero"
+      className="relative flex min-h-screen items-center px-6 pt-24"
+    >
+      <div className="mx-auto w-full max-w-5xl">
+        <div className="relative max-w-2xl">
+          {/* Rotated rubber-stamp badge */}
+          <div
+            className="animate-stamp absolute -right-2 -top-14 select-none border-[3px] border-rust px-3 py-1 text-rust sm:-right-10 sm:-top-8 md:-right-24"
+            style={{ transform: 'rotate(-3deg)' }}
+            aria-hidden="true"
           >
-            View Projects
-          </button>
-          <button 
-            onClick={() => scrollToSection('contact')}
-            className="px-8 py-3 border-2 border-blue-500 hover:bg-blue-500/10 rounded-lg font-semibold transition-all duration-200"
-          >
-            Get in Touch
-          </button>
+            <span className="block border border-rust/70 px-2 py-0.5 text-xs font-bold uppercase tracking-[0.18em]">
+              Open to work
+            </span>
+          </div>
+
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-moss">
+            Portfolio / Case File No. 01
+          </p>
+
+          <h1 className="text-4xl font-bold leading-tight text-ink sm:text-5xl lg:text-6xl">
+            Hi, I&apos;m Mike Robbins
+          </h1>
+
+          <p className="mt-4 text-lg text-ink/80 sm:text-xl">
+            Developer &amp; Housing Case Manager
+          </p>
+
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-ink/75">
+            I build clean, practical software, and I spend my days helping people
+            find stable housing. Both are the same job: understand the situation,
+            cut the noise, and put something that works in front of a person.
+          </p>
+
+          <div className="mt-9 flex flex-wrap gap-4">
+            <button
+              onClick={() => scrollToSection('projects')}
+              className="bg-rust px-6 py-3 text-sm font-semibold uppercase tracking-wide text-surface transition-transform duration-150 hover:-translate-y-0.5"
+            >
+              View Projects
+            </button>
+            <button
+              onClick={() => scrollToSection('contact')}
+              className="border border-ink px-6 py-3 text-sm font-semibold uppercase tracking-wide text-ink transition-colors duration-150 hover:bg-ink hover:text-surface"
+            >
+              Get in Touch
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <button 
+      <button
         onClick={() => scrollToSection('projects')}
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce"
+        className="absolute bottom-8 left-6 text-ink/50 transition-colors hover:text-rust"
         aria-label="Scroll to projects"
       >
-        <ChevronDown size={32} className="text-slate-400" />
+        <ChevronDown size={28} />
       </button>
     </section>
   );

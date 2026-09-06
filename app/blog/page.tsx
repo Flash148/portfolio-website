@@ -7,89 +7,83 @@ export default async function BlogPage() {
   const posts = await getAllBlogPosts();
 
   return (
-    <div className="min-h-screen py-20 px-6">
-      <div className="max-w-6xl mx-auto">
-        {/* Back to Home button */}
-        <Link 
+    <div className="min-h-screen px-6 py-24">
+      <div className="mx-auto max-w-5xl">
+        <Link
           href="/"
-          className="inline-flex items-center gap-2 text-slate-300 hover:text-blue-400 transition-colors mb-8"
+          className="mb-10 inline-flex items-center gap-2 text-sm text-rust underline underline-offset-4 hover:text-ink"
         >
-          <ArrowLeft size={20} />
+          <ArrowLeft size={18} />
           <span>Back to Home</span>
         </Link>
 
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-6xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-              FlashBytes
-            </span>
-          </h1>
-          <p className="text-xl text-slate-300">
-            Quick programming insights at lightning speed ⚡
-          </p>
-        </div>
+        <p className="mb-2 text-xs font-semibold uppercase tracking-[0.28em] text-moss">
+          Field Notes
+        </p>
+        <h1 className="text-4xl font-bold text-ink sm:text-5xl">FlashBytes</h1>
+        <p className="mt-3 text-ink/70">
+          Quick programming insights at lightning speed.
+        </p>
 
-        {/* Blog posts grid */}
         {posts.length === 0 ? (
-          <div className="text-center text-slate-400 py-20">
-            <p className="text-xl">No posts yet. Stay tuned! ⚡</p>
+          <div className="py-20 text-ink/60">
+            <p className="text-lg">No posts yet. Stay tuned.</p>
           </div>
         ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="mt-14 grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2">
             {posts.map((post, index) => (
-              <Link
+              <article
                 key={post.slug}
-                href={`/blog/${post.slug}`}
-                className="group bg-slate-800/50 backdrop-blur-sm rounded-xl overflow-hidden border border-slate-700 hover:border-blue-500 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20"
-                style={{ 
-                  animation: `fade-in 0.8s ease-out forwards`,
-                  animationDelay: `${index * 0.1}s`,
-                  opacity: 0
-                }}
+                className={`group relative ${index % 2 === 1 ? 'md:mt-12' : ''}`}
               >
-                {/* Thumbnail */}
-                <div className="relative h-48 bg-gradient-to-br from-blue-500/20 to-purple-500/20 overflow-hidden">
-                  {post.thumbnail ? (
-                    <Image
-                      src={post.thumbnail}
-                      alt={post.title}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-300"
-                    />
-                  ) : (
-                    <div className="flex items-center justify-center h-full">
-                      <span className="text-6xl">⚡</span>
-                    </div>
-                  )}
-                </div>
+                <span
+                  aria-hidden="true"
+                  className="absolute -top-3 left-6 h-3 w-24 rounded-t-md border border-b-0 border-line bg-surface"
+                />
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="block border border-line bg-surface transition-all duration-200 group-hover:-translate-y-1.5 group-hover:shadow-[7px_9px_0_rgba(43,58,68,0.13)]"
+                >
+                  <div className="relative h-44 overflow-hidden border-b border-line bg-paper">
+                    {post.thumbnail ? (
+                      <Image
+                        src={post.thumbnail}
+                        alt={post.title}
+                        fill
+                        className="object-cover"
+                      />
+                    ) : (
+                      <div className="flex h-full items-center justify-center font-hand text-3xl text-moss">
+                        FlashBytes
+                      </div>
+                    )}
+                  </div>
 
-                {/* Post content */}
-                <div className="p-6">
-                  <h2 className="text-xl font-bold mb-2 group-hover:text-blue-400 transition-colors">
-                    {post.title}
-                  </h2>
-                  <p className="text-slate-300 mb-4 line-clamp-2">
-                    {post.description}
-                  </p>
+                  <div className="p-6">
+                    <h2 className="text-lg font-bold text-ink group-hover:text-rust">
+                      {post.title}
+                    </h2>
+                    <p className="mt-2 line-clamp-2 text-ink/75">
+                      {post.description}
+                    </p>
 
-                  {/* Meta info */}
-                  <div className="flex items-center gap-4 text-sm text-slate-400">
-                    <div className="flex items-center gap-1">
-                      <Calendar size={16} />
-                      <span>{new Date(post.date).toLocaleDateString('en-US', { 
-                        month: 'short', 
-                        day: 'numeric', 
-                        year: 'numeric' 
-                      })}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <User size={16} />
-                      <span>{post.author}</span>
+                    <div className="mt-4 flex items-center gap-4 text-xs text-ink/60">
+                      <span className="flex items-center gap-1">
+                        <Calendar size={14} />
+                        {new Date(post.date).toLocaleDateString('en-US', {
+                          month: 'short',
+                          day: 'numeric',
+                          year: 'numeric',
+                        })}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <User size={14} />
+                        {post.author}
+                      </span>
                     </div>
                   </div>
-                </div>
-              </Link>
+                </Link>
+              </article>
             ))}
           </div>
         )}
